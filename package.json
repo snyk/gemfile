@@ -1,14 +1,14 @@
 {
-  "name": "gemfile",
-  "version": "1.0.0",
+  "name": "@snyk/gemfile",
   "description": "A Gemfile.lock parser for Node.js represented with JSON.",
   "main": "gemfile.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --harmony"
+    "test": "./node_modules/.bin/mocha --harmony",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "repository": {
     "type": "git",
-    "url": "github.com/treycordova/gemfile"
+    "url": "https://github.com/snyk/gemfile.git"
   },
   "keywords": [
     "Gemfile",
@@ -24,9 +24,10 @@
   "devDependencies": {
     "chai": "^3.4.1",
     "mocha": "^2.3.4",
-    "sinon": "^1.17.2"
+    "sinon": "^1.17.2",
+    "semantic-release": "^6.3.6"
   },
-  "engines": {
-    "node": ">= 4.2.4 < 5.4"
+  "publishConfig": {
+    "access": "private"
   }
 }
