@@ -28,6 +28,6 @@
     "semantic-release": "^6.3.6"
   },
   "publishConfig": {
-    "access": "private"
+    "access": "restricted"
   }
 }
