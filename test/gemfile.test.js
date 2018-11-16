@@ -154,5 +154,15 @@ describe('gemfile', function() {
       let output = gemfile.interpret(file, true);
       assert.property(output.specs.rspec, 'revision');
     });
+
+    ['Gemfile', 'Gemfile2'].forEach(function(filename) {
+      it('returns exactly what we expect for ' + filename, function() {
+        let file = fs.readFileSync('test/' + filename + '.lock', 'utf8');
+        let expected = JSON.parse(
+          fs.readFileSync('test/' + filename + '.json', 'utf8'));
+        let output = gemfile.interpret(file, true);
+        assert.deepEqual(output, expected, 'deep equals');
+      });
+    });
   });
 });

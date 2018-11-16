@@ -3,7 +3,6 @@
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert');
-const util = require('util');
 
 const GEMFILE_DEFAULT_LOCATION = path.resolve(process.cwd(), 'Gemfile.lock');
 const WHITESPACE = /^(\s*)/;
@@ -16,19 +15,6 @@ module.exports = {
   parseSync
 };
 
-const dupKeyMap = () => {
-  let counter = 0;
-  return new Proxy({}, {
-    set(target, key, value) {
-      if (target[key]) {
-        target[key + (counter++)] = target[key];
-      }
-      target[key] = value;
-      return true;
-    }
-  });
-};
-
 function interpret(string, extractMeta) {
   assert(
     typeof string === 'string',
@@ -38,10 +24,10 @@ function interpret(string, extractMeta) {
   const gemfileMeta = {};
 
   let line;
-  let level;
   let index = 0;
   let previousWhitespace = -1;
-  let gemfile = level = dupKeyMap();
+  let keyCount = {};
+  let gemfile = {};
   let lines = string.split('\n');
   let stack = [];
 
@@ -103,6 +89,16 @@ function interpret(string, extractMeta) {
 
       // Set key at current level
 
+      // Do not throw away additional top-level key entries
+      // e.g. multiple GIT/GEM blocks
+      if (level[key]) {
+        if (keyCount[key] === undefined) {
+          keyCount[key] = 0;
+        } else {
+          keyCount[key]++;
+        }
+        level[key + keyCount[key]] = level[key];
+      }
       level[key] = data;
 
       // Push key on stack
@@ -146,7 +142,7 @@ function interpret(string, extractMeta) {
                                   return specs;
                                 }, {}));
                                 return specs;
-                              }, {});  
+                              }, {});
     return gemfileMeta;
   }
 
