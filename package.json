@@ -3,8 +3,7 @@
   "description": "A Gemfile.lock parser for Node.js represented with JSON.",
   "main": "gemfile.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha --harmony",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+    "test": "./node_modules/.bin/mocha"
   },
   "repository": {
     "type": "git",
@@ -22,12 +21,11 @@
   "author": "Trey Cordova",
   "license": "MIT",
   "devDependencies": {
-    "chai": "^3.4.1",
-    "mocha": "^2.3.4",
-    "sinon": "^1.17.2",
-    "semantic-release": "^6.3.6"
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "sinon": "^7.1.1"
   },
-  "publishConfig": {
-    "access": "restricted"
+  "engines": {
+    "node": ">= 4.2.4"
   }
 }
