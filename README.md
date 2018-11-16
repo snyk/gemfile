@@ -1,4 +1,4 @@
-## gemfile [![Build Status](https://travis-ci.org/treycordova/gemfile.svg?branch=master)](https://travis-ci.org/treycordova/gemfile) [![Version Status](https://img.shields.io/npm/v/gemfile.svg)](https://www.npmjs.org/package/gemfile)
+## gemfile
 ### A Gemfile.lock parser for Node.js represented with JSON.
 #### Installation
 ```bash
