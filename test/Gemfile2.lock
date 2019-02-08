@@ -80,3 +80,6 @@ DEPENDENCIES
 
 BUNDLED WITH
    1.13.6
+
+RUBY VERSION
+  ruby 2.3.1p0 (jruby 9.1.6.0)
