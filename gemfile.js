@@ -8,6 +8,7 @@ const GEMFILE_DEFAULT_LOCATION = path.resolve(process.cwd(), 'Gemfile.lock');
 const WHITESPACE = /^(\s*)/;
 const GEMFILE_KEY_VALUE = /^\s*([^:(]*)\s*\:*\s*(.*)/;
 const ORIGINS = ['GEM', 'GIT', 'PATH'];
+const RUBY = /^ruby\s(.*)/;
 
 module.exports = {
   interpret,
@@ -126,8 +127,15 @@ function interpret(string, extractMeta) {
     gemfile['BUNDLED WITH'] = Object.keys(gemfile['BUNDLED WITH'])[0];
   }
 
+  if (gemfile['RUBY VERSION']) {
+    const rawVersion= Object.keys(gemfile['RUBY VERSION'])[0];
+    const version = RUBY.exec(rawVersion)[1];
+    gemfile['RUBY VERSION'] = version;
+  }
+
   if (extractMeta) {
     gemfileMeta.bundledWith = gemfile['BUNDLED WITH'];
+    gemfileMeta.rubyVersion = gemfile['RUBY VERSION'];
     gemfileMeta.platforms = gemfile['PLATFORMS'];
     gemfileMeta.dependencies = gemfile['DEPENDENCIES'];
     gemfileMeta.specs = Object.keys(gemfile)

@@ -1,5 +1,6 @@
 {
   "bundledWith": "1.11.2",
+  "rubyVersion": "2.3.1p112",
   "platforms": {
     "ruby": {}
   },

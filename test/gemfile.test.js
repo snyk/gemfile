@@ -152,6 +152,7 @@ describe('gemfile', function() {
 
     it('has actual metadata', function () {
       let output = gemfile.interpret(file, true);
+      assert.deepEqual(output.rubyVersion, '2.3.1p0');
       assert.property(output.specs.rspec, 'revision');
     });
 
