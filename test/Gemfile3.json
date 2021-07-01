@@ -1,0 +1,33 @@
+{
+  "bundledWith": "2.2.19",
+  "rubyVersion": "2.7.3p183",
+  "platforms": {
+    "x86_64-linux": {}
+  },
+  "dependencies": {
+    "current-path-gem": {
+      "outsourced": true,
+      "version": "= 0.1.0"
+    },
+    "parent-path-gem": {
+      "outsourced": true,
+      "version": "= 0.1.0"
+    }
+  },
+  "specs": {
+    "current-path-gem": {
+      "version": "0.1.0",
+      "type": "PATH",
+      "remote": {
+        "path": "."
+      }
+    },
+    "parent-path-gem": {
+      "version": "0.1.0",
+      "type": "PATH",
+      "remote": {
+        "path": ".."
+      }
+    }
+  }
+}

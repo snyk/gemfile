@@ -73,7 +73,7 @@ function interpret(string, extractMeta) {
 
       let data = {};
 
-      if (value.indexOf('/') > -1)  {
+      if (value.indexOf('/') > -1 || value.match(/^\.{1,2}$/)) {
         data.path = value;
       } else if (value.indexOf('(') > -1) {
         if (value[value.length - 1] === '!') {
