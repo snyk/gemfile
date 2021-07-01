@@ -166,7 +166,7 @@ describe('gemfile', function() {
       assert.property(output.specs.rspec, 'revision');
     });
 
-    ['Gemfile', 'Gemfile2'].forEach(function(filename) {
+    ['Gemfile', 'Gemfile2', 'Gemfile3'].forEach(function(filename) {
       it('returns exactly what we expect for ' + filename, function() {
         let file = fs.readFileSync('test/' + filename + '.lock', 'utf8');
         let expected = JSON.parse(
