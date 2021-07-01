@@ -52,6 +52,16 @@ describe('gemfile', function() {
             gemfile.interpret('test: some/path'),
             {test: {path: 'some/path'}}
           );
+
+          assert.deepEqual(
+            gemfile.interpret('test: .'),
+            {test: {path: '.'}}
+          );
+
+          assert.deepEqual(
+            gemfile.interpret('test: ..'),
+            {test: {path: '..'}}
+          );
         });
 
         it('versions', function() {
