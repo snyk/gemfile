@@ -1,5 +1,5 @@
 PATH
-  remote: vendor/gems/decima-ruby-0.1.0
+  remote: vendor/gems/decima-ruby-2.7.2
   specs:
     decima-ruby (0.1.0)
       addressable (~> 2.3)
