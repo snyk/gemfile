@@ -67,7 +67,7 @@
     "spring": {},
     "stackprof": {},
     "uglifier": {
-      "version": ">= 1.3.0"
+      "version": ">= 2.7.2"
     },
     "unicorn": {},
     "web-console": {
@@ -1400,7 +1400,7 @@
       }
     },
     "uglifier": {
-      "version": "2.7.1",
+      "version": "2.7.2",
       "execjs": {
         "version": ">= 0.3.0"
       },
