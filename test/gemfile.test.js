@@ -52,6 +52,16 @@ describe('gemfile', function() {
             gemfile.interpret('test: some/path'),
             {test: {path: 'some/path'}}
           );
+
+          assert.deepEqual(
+            gemfile.interpret('test: .'),
+            {test: {path: '.'}}
+          );
+
+          assert.deepEqual(
+            gemfile.interpret('test: ..'),
+            {test: {path: '..'}}
+          );
         });
 
         it('versions', function() {
@@ -156,7 +166,7 @@ describe('gemfile', function() {
       assert.property(output.specs.rspec, 'revision');
     });
 
-    ['Gemfile', 'Gemfile2'].forEach(function(filename) {
+    ['Gemfile', 'Gemfile2', 'Gemfile3'].forEach(function(filename) {
       it('returns exactly what we expect for ' + filename, function() {
         let file = fs.readFileSync('test/' + filename + '.lock', 'utf8');
         let expected = JSON.parse(
