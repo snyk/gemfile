@@ -3,6 +3,21 @@ version: 2.1
 orbs:
   prodsec: snyk/prodsec-orb@1
 
+defaults: &defaults
+  resource_class: small
+  docker:
+    - image: cimg/node:22.21
+
+jobs:
+  security-scans:
+    <<: *defaults
+    steps:
+      - checkout
+      - prodsec/security_scans:
+          mode: auto
+          open-source-additional-arguments: --exclude=test
+          iac-scan: disabled
+
 workflows:
   version: 2
   CICD:
@@ -12,3 +27,12 @@ workflows:
           context:
             - snyk-bot-slack
           channel: snyk-vuln-alerts-sca
+          filters:
+            branches:
+              ignore:
+                - master
+
+      - security-scans:
+          name: Security Scans
+          context:
+            - open_source-managed
