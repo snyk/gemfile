@@ -6,7 +6,7 @@ orbs:
 defaults: &defaults
   resource_class: small
   docker:
-    - image: cimg/node:22.21
+    - image: cimg/node:24.16
 
 jobs:
   security-scans:
@@ -18,6 +18,17 @@ jobs:
           open-source-additional-arguments: --exclude=test
           iac-scan: disabled
           release-branch: master
+
+  release:
+    <<: *defaults
+    steps:
+      - checkout
+      - install_deps
+      - run:
+          name: Release
+          command: |
+            export NPM_ID_TOKEN=$(circleci run oidc get --claims '{"aud": "npm:registry.npmjs.org"}')
+            npx semantic-release@25.0.3
 
 workflows:
   version: 2
@@ -37,3 +48,16 @@ workflows:
           name: Security Scans
           context:
             - open_source-managed
+
+      - release:
+          name: Release
+          context:
+            - nodejs-install
+            - github-release
+          requires:
+            - prodsec/secrets-scan
+            - security-scans
+          filters:
+            branches:
+              only:
+                - master
