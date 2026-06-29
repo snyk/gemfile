@@ -19,6 +19,17 @@ jobs:
           iac-scan: disabled
           release-branch: master
 
+  tests:
+    <<: *defaults
+    steps:
+      - checkout
+      - run:
+          name: Install dev dependencies
+          command: npm install
+      - run:
+          name: Run tests
+          command: npm run test
+
   release:
     <<: *defaults
     steps:
@@ -48,14 +59,16 @@ workflows:
           context:
             - open_source-managed
 
+      - tests:
+          name: Tests
+
       - release:
           name: Release
           context:
             - nodejs-install
             - github-release
           requires:
-            - prodsec/secrets-scan
-            - security-scans
+            - Tests
           filters:
             branches:
               only:

@@ -16,6 +16,9 @@
   "bugs": {
     "url": "https://github.com/snyk/gemfile/issues"
   },
+  "files": [
+    "gemfile.js"
+  ],
   "keywords": [
     "Gemfile",
     "Gemfile.lock",
