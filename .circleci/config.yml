@@ -23,7 +23,6 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - install_deps
       - run:
           name: Release
           command: |
