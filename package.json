@@ -9,6 +9,16 @@
     "type": "git",
     "url": "https://github.com/snyk/gemfile.git"
   },
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://github.com/snyk/gemfile#readme",
+  "bugs": {
+    "url": "https://github.com/snyk/gemfile/issues"
+  },
+  "files": [
+    "gemfile.js"
+  ],
   "keywords": [
     "Gemfile",
     "Gemfile.lock",
