@@ -6,7 +6,7 @@ orbs:
 defaults: &defaults
   resource_class: small
   docker:
-    - image: cimg/node:24.16
+    - image: cimg/node:22
 
 jobs:
   security-scans:
@@ -21,6 +21,11 @@ jobs:
 
   tests:
     <<: *defaults
+    parameters:
+      node_version:
+        type: string
+    docker:
+      - image: cimg/node:<< parameters.node_version >>
     steps:
       - checkout
       - run:
@@ -62,7 +67,11 @@ workflows:
             - prodsec-orb-runtime
 
       - tests:
-          name: Tests
+          name: Tests Node=<< matrix.node_version >>
+          matrix:
+            alias: Tests
+            parameters:
+              node_version: ['22', '24', '26']
 
       - release:
           name: Release
