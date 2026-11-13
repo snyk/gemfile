@@ -27,7 +27,7 @@ jobs:
       - checkout
       - run:
           name: Install dev dependencies
-          command: npm install
+          command: npm ci
       - run:
           name: Run tests
           command: npm run test
